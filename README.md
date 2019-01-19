@@ -1,0 +1,2 @@
+# ProductModelTableManagement
+依据经典的JavaWeb SSM框架开发，实现前端用户对数据库单表的CRUD管理。
