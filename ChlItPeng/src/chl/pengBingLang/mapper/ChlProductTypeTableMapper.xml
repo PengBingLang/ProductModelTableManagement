@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chl.pengBingLang.mapper.ChlProductTypeTableMapper" >
+
+    <resultMap id="BaseResultMap" type="chl.pengBingLang.po.ChlProductTypeTable" >
+        <id column="PRODUCT_NO" property="productNo" jdbcType="CHAR" />
+        <id column="SYSTEM_TYPE" property="systemType" jdbcType="CHAR" />
+        <result column="USABILITY" property="usability" jdbcType="VARCHAR" />
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+        <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+        <result column="FIRST_CAR_TYPE" property="firstCarType" jdbcType="VARCHAR" />
+        <result column="CUSTOMER_PRINT_NO" property="customerPrintNo" jdbcType="VARCHAR" />
+        <result column="GRANT_NUM_DATE" property="grantNumDate" jdbcType="VARCHAR" />
+        <result column="DESIGN_PEOPLE" property="designPeople" jdbcType="VARCHAR" />
+        <result column="DEVELOP_COMPANY" property="developCompany" jdbcType="VARCHAR" />
+        <result column="EXPLAIN_ALL" property="explainAll" jdbcType="VARCHAR" />
+        <result column="BACKUP_COLUMN01" property="backupColumn01" jdbcType="VARCHAR" />
+        <result column="BACKUP_COLUMN02" property="backupColumn02" jdbcType="VARCHAR" />
+        <result column="BACKUP_COLUMN03" property="backupColumn03" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        PRODUCT_NO, SYSTEM_TYPE, USABILITY, PRODUCT_NAME, CUSTOMER_NAME, FIRST_CAR_TYPE, 
+        CUSTOMER_PRINT_NO, GRANT_NUM_DATE, DESIGN_PEOPLE, DEVELOP_COMPANY, EXPLAIN_ALL, BACKUP_COLUMN01, 
+        BACKUP_COLUMN02, BACKUP_COLUMN03
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="chl.pengBingLang.po.ChlProductTypeTableKey" >
+        select 
+        <include refid="Base_Column_List" />
+        from chl_product_type_table
+        <!-- where PRODUCT_NO = #{productNo,jdbcType=CHAR}
+          and SYSTEM_TYPE = #{systemType,jdbcType=CHAR} -->
+        where PRODUCT_NO = '${productNo}'
+        and SYSTEM_TYPE = '${systemType}'
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="chl.pengBingLang.po.ChlProductTypeTableKey" >
+        <!-- delete from chl_product_type_table
+        where PRODUCT_NO = #{productNo,jdbcType=CHAR}
+          and SYSTEM_TYPE = #{systemType,jdbcType=CHAR} -->
+        delete from chl_product_type_table
+        where PRODUCT_NO = '${productNo}'
+        and SYSTEM_TYPE = '${systemType}'
+    </delete>
+
+    <insert id="insert" parameterType="chl.pengBingLang.po.ChlProductTypeTable" >
+        insert into chl_product_type_table (PRODUCT_NO, SYSTEM_TYPE, USABILITY, 
+            PRODUCT_NAME, CUSTOMER_NAME, FIRST_CAR_TYPE, 
+            CUSTOMER_PRINT_NO, GRANT_NUM_DATE, DESIGN_PEOPLE, 
+            DEVELOP_COMPANY, EXPLAIN_ALL, BACKUP_COLUMN01, 
+            BACKUP_COLUMN02, BACKUP_COLUMN03)
+        values (#{productNo,jdbcType=CHAR}, #{systemType,jdbcType=CHAR}, #{usability,jdbcType=VARCHAR}, 
+            #{productName,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{firstCarType,jdbcType=VARCHAR}, 
+            #{customerPrintNo,jdbcType=VARCHAR}, #{grantNumDate,jdbcType=VARCHAR}, #{designPeople,jdbcType=VARCHAR}, 
+            #{developCompany,jdbcType=VARCHAR}, #{explainAll,jdbcType=VARCHAR}, #{backupColumn01,jdbcType=VARCHAR}, 
+            #{backupColumn02,jdbcType=VARCHAR}, #{backupColumn03,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="chl.pengBingLang.po.ChlProductTypeTable" >
+        insert into chl_product_type_table
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="productNo != null" >
+                PRODUCT_NO,
+            </if>
+            <if test="systemType != null" >
+                SYSTEM_TYPE,
+            </if>
+            <if test="usability != null" >
+                USABILITY,
+            </if>
+            <if test="productName != null" >
+                PRODUCT_NAME,
+            </if>
+            <if test="customerName != null" >
+                CUSTOMER_NAME,
+            </if>
+            <if test="firstCarType != null" >
+                FIRST_CAR_TYPE,
+            </if>
+            <if test="customerPrintNo != null" >
+                CUSTOMER_PRINT_NO,
+            </if>
+            <if test="grantNumDate != null" >
+                GRANT_NUM_DATE,
+            </if>
+            <if test="designPeople != null" >
+                DESIGN_PEOPLE,
+            </if>
+            <if test="developCompany != null" >
+                DEVELOP_COMPANY,
+            </if>
+            <if test="explainAll != null" >
+                EXPLAIN_ALL,
+            </if>
+            <if test="backupColumn01 != null" >
+                BACKUP_COLUMN01,
+            </if>
+            <if test="backupColumn02 != null" >
+                BACKUP_COLUMN02,
+            </if>
+            <if test="backupColumn03 != null" >
+                BACKUP_COLUMN03,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="productNo != null" >
+                #{productNo,jdbcType=CHAR},
+            </if>
+            <if test="systemType != null" >
+                #{systemType,jdbcType=CHAR},
+            </if>
+            <if test="usability != null" >
+                #{usability,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null" >
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null" >
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstCarType != null" >
+                #{firstCarType,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPrintNo != null" >
+                #{customerPrintNo,jdbcType=VARCHAR},
+            </if>
+            <if test="grantNumDate != null" >
+                #{grantNumDate,jdbcType=VARCHAR},
+            </if>
+            <if test="designPeople != null" >
+                #{designPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="developCompany != null" >
+                #{developCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="explainAll != null" >
+                #{explainAll,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn01 != null" >
+                #{backupColumn01,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn02 != null" >
+                #{backupColumn02,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn03 != null" >
+                #{backupColumn03,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="chl.pengBingLang.po.ChlProductTypeTable" >
+        update chl_product_type_table
+        <set >
+            <if test="usability != null" >
+                USABILITY = #{usability,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null" >
+                PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null" >
+                CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="firstCarType != null" >
+                FIRST_CAR_TYPE = #{firstCarType,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPrintNo != null" >
+                CUSTOMER_PRINT_NO = #{customerPrintNo,jdbcType=VARCHAR},
+            </if>
+            <if test="grantNumDate != null" >
+                GRANT_NUM_DATE = #{grantNumDate,jdbcType=VARCHAR},
+            </if>
+            <if test="designPeople != null" >
+                DESIGN_PEOPLE = #{designPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="developCompany != null" >
+                DEVELOP_COMPANY = #{developCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="explainAll != null" >
+                EXPLAIN_ALL = #{explainAll,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn01 != null" >
+                BACKUP_COLUMN01 = #{backupColumn01,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn02 != null" >
+                BACKUP_COLUMN02 = #{backupColumn02,jdbcType=VARCHAR},
+            </if>
+            <if test="backupColumn03 != null" >
+                BACKUP_COLUMN03 = #{backupColumn03,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where PRODUCT_NO = #{productNo,jdbcType=CHAR}
+          and SYSTEM_TYPE = #{systemType,jdbcType=CHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="chl.pengBingLang.po.ChlProductTypeTable" >
+        update chl_product_type_table
+        set USABILITY = '${usability}',
+            PRODUCT_NAME = '${productName}',
+            CUSTOMER_NAME = '${customerName}',
+            FIRST_CAR_TYPE = '${firstCarType}',
+            CUSTOMER_PRINT_NO = '${customerPrintNo}',
+            GRANT_NUM_DATE = '${grantNumDate}',
+            DESIGN_PEOPLE = '${designPeople}',
+            DEVELOP_COMPANY = '${developCompany}',
+            EXPLAIN_ALL = '${explainAll}',
+            BACKUP_COLUMN01 = '${backupColumn01}',
+            BACKUP_COLUMN02 = '${backupColumn02}',
+            BACKUP_COLUMN03 = '${backupColumn03}'
+        where PRODUCT_NO = '${productNo}'
+          and SYSTEM_TYPE = '${systemType}'
+    </update>
+</mapper>

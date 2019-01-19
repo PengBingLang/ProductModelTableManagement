@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chl.pengBingLang.mapper.PermissionMapper">
+
+	<select id="selectIsGrant" parameterType="chl.pengBingLang.po.PermissionVo" resultType="java.lang.Integer">
+		select count(module_id) from ROLE_MODULE where role_id in
+		(select role_id from user_role where user_id='${userId}')
+		and module_id='${moduleId}'
+		and is_grant='1'
+	</select>
+
+	<select id="selectIsRefuse" parameterType="chl.pengBingLang.po.PermissionVo" resultType="java.lang.Integer">
+		select count(module_id) from ROLE_MODULE where role_id in
+		(select role_id from user_role where user_id='${userId}')
+		and module_id='${moduleId}'
+		and refuse='1'
+	</select>
+</mapper>

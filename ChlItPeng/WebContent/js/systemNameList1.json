@@ -1,0 +1,35 @@
+[
+	{
+		"id": "ALL",
+		"text": "全部版块",
+		"selected": true
+	},
+	{
+		"id": "RCB",
+		"text": "RCB"
+	},
+	{
+		"id": "HPS",
+		"text": "HPS"
+	},
+	{
+		"id": "EPS",
+		"text": "EPS"
+	},
+	{
+		"id": "COL",
+		"text": "COL"
+	},
+	{
+		"id": "MSG",
+		"text": "MSG"
+	},
+	{
+		"id": "MOT",
+		"text": "MOT"
+	},
+	{
+		"id": "ECU",
+		"text": "ECU"
+	}
+]

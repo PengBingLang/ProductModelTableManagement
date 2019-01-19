@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chl.pengBingLang.mapper.SysModuleMapper" >
+
+    <resultMap id="BaseResultMap" type="chl.pengBingLang.po.SysModule" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="DOC" property="doc" jdbcType="VARCHAR" />
+        <result column="BACKUP01" property="backup01" jdbcType="VARCHAR" />
+        <result column="BACKUP02" property="backup02" jdbcType="VARCHAR" />
+        <result column="BACKUP03" property="backup03" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID, NAME, DOC, BACKUP01, BACKUP02, BACKUP03
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from SYS_MODULE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from SYS_MODULE
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="chl.pengBingLang.po.SysModule" >
+        insert into SYS_MODULE (ID, NAME, DOC, 
+            BACKUP01, BACKUP02, BACKUP03
+            )
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{doc,jdbcType=VARCHAR}, 
+            #{backup01,jdbcType=VARCHAR}, #{backup02,jdbcType=VARCHAR}, #{backup03,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="chl.pengBingLang.po.SysModule" >
+        insert into SYS_MODULE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="name != null" >
+                NAME,
+            </if>
+            <if test="doc != null" >
+                DOC,
+            </if>
+            <if test="backup01 != null" >
+                BACKUP01,
+            </if>
+            <if test="backup02 != null" >
+                BACKUP02,
+            </if>
+            <if test="backup03 != null" >
+                BACKUP03,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="doc != null" >
+                #{doc,jdbcType=VARCHAR},
+            </if>
+            <if test="backup01 != null" >
+                #{backup01,jdbcType=VARCHAR},
+            </if>
+            <if test="backup02 != null" >
+                #{backup02,jdbcType=VARCHAR},
+            </if>
+            <if test="backup03 != null" >
+                #{backup03,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="chl.pengBingLang.po.SysModule" >
+        update SYS_MODULE
+        <set >
+            <if test="name != null" >
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="doc != null" >
+                DOC = #{doc,jdbcType=VARCHAR},
+            </if>
+            <if test="backup01 != null" >
+                BACKUP01 = #{backup01,jdbcType=VARCHAR},
+            </if>
+            <if test="backup02 != null" >
+                BACKUP02 = #{backup02,jdbcType=VARCHAR},
+            </if>
+            <if test="backup03 != null" >
+                BACKUP03 = #{backup03,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="chl.pengBingLang.po.SysModule" >
+        update SYS_MODULE
+        set NAME = #{name,jdbcType=VARCHAR},
+            DOC = #{doc,jdbcType=VARCHAR},
+            BACKUP01 = #{backup01,jdbcType=VARCHAR},
+            BACKUP02 = #{backup02,jdbcType=VARCHAR},
+            BACKUP03 = #{backup03,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

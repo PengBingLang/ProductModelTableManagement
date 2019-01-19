@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chl.pengBingLang.mapper.ChlProductTypeTableMapperCustom">
+
+	<!-- xml的sql语句中，不能直接用大于号、小于号要用转义字符 -->
+	<!-- &lt;小于号  &gt;大于号 -->
+
+	<!-- 查询中的排序关键字 -->
+	<sql id="sort_Key">
+		<choose>
+			<when test='"systemType".equals(sort)'>SYSTEM_TYPE</when>
+			<when test='"usability".equals(sort)'>USABILITY</when>
+			<when test='"productName".equals(sort)'>PRODUCT_NAME</when>
+			<when test='"customerName".equals(sort)'>CUSTOMER_NAME</when>
+			<when test='"firstCarType".equals(sort)'>FIRST_CAR_TYPE</when>
+			<when test='"customerPrintNo".equals(sort)'>CUSTOMER_PRINT_NO</when>
+			<when test='"grantNumDate".equals(sort)'>NVL(GRANT_NUM_DATE,'0')</when>
+			<when test='"designPeople".equals(sort)'>DESIGN_PEOPLE</when>
+			<when test='"developCompany".equals(sort)'>DEVELOP_COMPANY</when>
+			<when test='"explainAll".equals(sort)'>EXPLAIN_ALL</when>
+			<when test='"backupColumn01".equals(sort)'>BACKUP_COLUMN01</when>
+			<when test='"backupColumn02".equals(sort)'>BACKUP_COLUMN02</when>
+			<when test='"backupColumn03".equals(sort)'>BACKUP_COLUMN03</when>
+			<otherwise>PRODUCT_NO</otherwise>
+		</choose>
+	</sql>
+
+	<!-- 产品型号表分页查询 -->
+	<select id="getOnePageProductType_ALL" parameterType="chl.pengBingLang.po.OnePageVo"
+		resultMap="chl.pengBingLang.mapper.ChlProductTypeTableMapper.BaseResultMap">
+		SELECT PRODUCT_NO,SYSTEM_TYPE,USABILITY,PRODUCT_NAME,CUSTOMER_NAME,FIRST_CAR_TYPE,CUSTOMER_PRINT_NO,GRANT_NUM_DATE,DESIGN_PEOPLE,DEVELOP_COMPANY,EXPLAIN_ALL 
+		FROM CHL_PRODUCT_TYPE_TABLE WHERE ROWID IN ( 
+			SELECT RID FROM ( 
+				SELECT ROWNUM RN,RID FROM ( 
+					SELECT ROWID RID,<include refid="sort_Key" /> FROM CHL_PRODUCT_TYPE_TABLE WHERE
+					<if test='!"ALL".equals(type)'>SYSTEM_TYPE = '${type}' AND</if>
+					(PRODUCT_NO LIKE '%${key}%' OR 
+					SYSTEM_TYPE LIKE '%${key}%' OR 
+					USABILITY LIKE '%${key}%' OR 
+					PRODUCT_NAME LIKE '%${key}%' OR 
+					CUSTOMER_NAME LIKE '%${key}%' OR 
+					FIRST_CAR_TYPE LIKE '%${key}%' OR 
+					CUSTOMER_PRINT_NO LIKE '%${key}%' OR 
+					GRANT_NUM_DATE LIKE '%${key}%' OR 
+					DESIGN_PEOPLE LIKE '%${key}%' OR 
+					DEVELOP_COMPANY LIKE '%${key}%' OR 
+					EXPLAIN_ALL LIKE '%${key}%' OR 
+					BACKUP_COLUMN01 LIKE '%${key}%' OR 
+					BACKUP_COLUMN02 LIKE '%${key}%' OR 
+					BACKUP_COLUMN03 LIKE '%${key}%')
+					ORDER BY <include refid="sort_Key" />
+					<if test='"desc".equals(order)'>DESC</if>
+				) WHERE ROWNUM &lt;= #{endNum} 
+			) WHERE RN &gt;= #{beginNum} 
+		) ORDER BY <include refid="sort_Key" />
+		<if test='"desc".equals(order)'>DESC</if>
+	</select>
+
+	<!-- 查询总行数 -->
+	<select id="getAllProductLine" parameterType="chl.pengBingLang.po.OnePageVo" resultType="java.lang.Integer">
+		SELECT COUNT(PRODUCT_NO) FROM CHL_PRODUCT_TYPE_TABLE WHERE
+		<if test='!"ALL".equals(type)'>SYSTEM_TYPE='${type}' AND</if>
+		(PRODUCT_NO LIKE '%${key}%' OR 
+		SYSTEM_TYPE LIKE '%${key}%' OR 
+		USABILITY LIKE '%${key}%' OR 
+		PRODUCT_NAME LIKE '%${key}%' OR 
+		CUSTOMER_NAME LIKE '%${key}%' OR 
+		FIRST_CAR_TYPE LIKE '%${key}%' OR 
+		CUSTOMER_PRINT_NO LIKE '%${key}%' OR 
+		GRANT_NUM_DATE LIKE '%${key}%' OR 
+		DESIGN_PEOPLE LIKE '%${key}%' OR 
+		DEVELOP_COMPANY LIKE '%${key}%' OR 
+		EXPLAIN_ALL LIKE '%${key}%' OR 
+		BACKUP_COLUMN01 LIKE '%${key}%' OR 
+		BACKUP_COLUMN02 LIKE '%${key}%' OR 
+		BACKUP_COLUMN03 LIKE '%${key}%')
+	</select>
+
+</mapper>

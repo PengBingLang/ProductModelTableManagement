@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chl.pengBingLang.mapper.SysUserMapper" >
+
+    <resultMap id="BaseResultMap" type="chl.pengBingLang.po.SysUser" >
+        <id column="ID" property="id" jdbcType="CHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="TEL" property="tel" jdbcType="VARCHAR" />
+        <result column="NAME2" property="name2" jdbcType="VARCHAR" />
+        <result column="ENABLE" property="enable" jdbcType="CHAR" />
+        <result column="BACKUP01" property="backup01" jdbcType="VARCHAR" />
+        <result column="BACKUP02" property="backup02" jdbcType="VARCHAR" />
+        <result column="BACKUP03" property="backup03" jdbcType="VARCHAR" />
+        <result column="BACKUP04" property="backup04" jdbcType="VARCHAR" />
+        <result column="BACKUP05" property="backup05" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID, NAME, PASSWORD, EMAIL, TEL, NAME2, ENABLE, BACKUP01, BACKUP02, BACKUP03, BACKUP04, 
+        BACKUP05
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from SYS_USER
+        <!-- where ID = #{id,jdbcType=CHAR} -->
+        where ID = '${value}'
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from SYS_USER
+        where ID = #{id,jdbcType=CHAR}
+    </delete>
+
+    <insert id="insert" parameterType="chl.pengBingLang.po.SysUser" >
+        insert into SYS_USER (ID, NAME, PASSWORD, 
+            EMAIL, TEL, NAME2, 
+            ENABLE, BACKUP01, BACKUP02, 
+            BACKUP03, BACKUP04, BACKUP05
+            )
+        values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+            #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{name2,jdbcType=VARCHAR}, 
+            #{enable,jdbcType=CHAR}, #{backup01,jdbcType=VARCHAR}, #{backup02,jdbcType=VARCHAR}, 
+            #{backup03,jdbcType=VARCHAR}, #{backup04,jdbcType=VARCHAR}, #{backup05,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="chl.pengBingLang.po.SysUser" >
+        insert into SYS_USER
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="name != null" >
+                NAME,
+            </if>
+            <if test="password != null" >
+                PASSWORD,
+            </if>
+            <if test="email != null" >
+                EMAIL,
+            </if>
+            <if test="tel != null" >
+                TEL,
+            </if>
+            <if test="name2 != null" >
+                NAME2,
+            </if>
+            <if test="enable != null" >
+                ENABLE,
+            </if>
+            <if test="backup01 != null" >
+                BACKUP01,
+            </if>
+            <if test="backup02 != null" >
+                BACKUP02,
+            </if>
+            <if test="backup03 != null" >
+                BACKUP03,
+            </if>
+            <if test="backup04 != null" >
+                BACKUP04,
+            </if>
+            <if test="backup05 != null" >
+                BACKUP05,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="name2 != null" >
+                #{name2,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null" >
+                #{enable,jdbcType=CHAR},
+            </if>
+            <if test="backup01 != null" >
+                #{backup01,jdbcType=VARCHAR},
+            </if>
+            <if test="backup02 != null" >
+                #{backup02,jdbcType=VARCHAR},
+            </if>
+            <if test="backup03 != null" >
+                #{backup03,jdbcType=VARCHAR},
+            </if>
+            <if test="backup04 != null" >
+                #{backup04,jdbcType=VARCHAR},
+            </if>
+            <if test="backup05 != null" >
+                #{backup05,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="chl.pengBingLang.po.SysUser" >
+        update SYS_USER
+        <set >
+            <if test="name != null" >
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                PASSWORD = '${password}',
+            </if>
+            <if test="email != null" >
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                TEL = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="name2 != null" >
+                NAME2 = #{name2,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null" >
+                ENABLE = #{enable,jdbcType=CHAR},
+            </if>
+            <if test="backup01 != null" >
+                BACKUP01 = #{backup01,jdbcType=VARCHAR},
+            </if>
+            <if test="backup02 != null" >
+                BACKUP02 = #{backup02,jdbcType=VARCHAR},
+            </if>
+            <if test="backup03 != null" >
+                BACKUP03 = #{backup03,jdbcType=VARCHAR},
+            </if>
+            <if test="backup04 != null" >
+                BACKUP04 = #{backup04,jdbcType=VARCHAR},
+            </if>
+            <if test="backup05 != null" >
+                BACKUP05 = #{backup05,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = '${id}'
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="chl.pengBingLang.po.SysUser" >
+        update SYS_USER
+        set NAME = #{name,jdbcType=VARCHAR},
+            PASSWORD = #{password,jdbcType=VARCHAR},
+            EMAIL = #{email,jdbcType=VARCHAR},
+            TEL = #{tel,jdbcType=VARCHAR},
+            NAME2 = #{name2,jdbcType=VARCHAR},
+            ENABLE = #{enable,jdbcType=CHAR},
+            BACKUP01 = #{backup01,jdbcType=VARCHAR},
+            BACKUP02 = #{backup02,jdbcType=VARCHAR},
+            BACKUP03 = #{backup03,jdbcType=VARCHAR},
+            BACKUP04 = #{backup04,jdbcType=VARCHAR},
+            BACKUP05 = #{backup05,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=CHAR}
+    </update>
+</mapper>
